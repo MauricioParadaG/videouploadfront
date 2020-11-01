@@ -24,9 +24,14 @@ const VideoForm = () => {
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
+        if (!params.id){
         const res = await videoService.createVideo(video);
-        setVideo(res.data);
+        //setVideo(res.data);
         toast.success("New video added");
+        } else {
+          const res = await videoService.updateVideo(params.id, video);
+          //setVideo(res.data);
+        }
         history.push('/');
     }
 
